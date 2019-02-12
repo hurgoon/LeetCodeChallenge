@@ -20,9 +20,27 @@
  The above arrows point to positions where the corresponding bits are different.
  */
 
+let num1 = 93
+let num2 = 73
+
 class Solution {
     func hammingDistance(_ x: Int, _ y: Int) -> Int {
         
+        let xorString = String(x ^ y, radix:2)
+        print(xorString.filter{ "1".contains($0) }.count)
+        print(xorString.filter{ "1" == $0 }.count)
+        
+        return (xorString.enumerated().compactMap{ $0.element == "1" ? $0.element : nil}).count
     }
 }
+let a = Solution()
+a.hammingDistance(num1, num2)
 
+
+func hammingDistance2 (_ x: Int, _ y: Int) -> Int {
+    let val = x ^ y
+    print("val ", "=",val )
+    
+    return val.nonzeroBitCount
+}
+hammingDistance2(num1, num2)
