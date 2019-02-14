@@ -55,8 +55,11 @@ v2.right?.right = TreeNode(7)
 class Solution {
     func mergeTrees(_ t1: TreeNode?, _ t2: TreeNode?) -> TreeNode? {
         
-        let t3 = TreeNode((t1?.val ?? 0) + (t2?.val ?? 0))
+        if t1 == nil && t2 == nil {
+            return nil
+        }
         
+        let t3 = TreeNode((t1?.val ?? 0) + (t2?.val ?? 0))
         
         t3.left = self.mergeTrees(t1?.left, t2?.left)
         t3.right = self.mergeTrees(t1?.right, t2?.right)
@@ -68,6 +71,3 @@ class Solution {
 let c = Solution()
 c.mergeTrees(v1, v2)
 
-v1.val
-v1.left?.val
-v1.right?.val
