@@ -25,44 +25,43 @@
 
 // .은 무시, + 뒤에는 무시
 
+import UIKit
+
 class Solution {
     func numUniqueEmails(_ emails: [String]) -> Int {
 
-        var newEmails: [String] = []
+        var newEmails = Set<String>()  // Set은 element의 중복을 허용하지 않는다
 
         for email in emails {
-            let localName = (email.split{ $0 == "@" })[0]   // front part
-            guard let domainName = email.split(separator: "@").last else { return 0} // back part
+            var localName = String(email.split{ $0 == "@" }[0])
+            guard let domainName = email.split(separator: "@").last else { return 0}
             
-            localName.contains(".") ? localName.remove
+            localName = localName.replacingOccurrences(of: ".", with: "")
+            localName.contains("+") ? (localName = String(localName.split{ $0 == "+" }[0])) : (localName = localName)
             
-            
-            let checkedEmail = "\(localName)@\(domainName))"
-            print(" localName", "=",localName )
-            print(" domainName", "=", domainName)
-            print(checkedEmail)
-            
-             // newEmails에 있는지 확인하고 있으면 넣지 않음
-            newEmails.append(checkedEmail)
+            newEmails.insert("\(localName)@\(domainName))")
         }
         
-        
-        return 0
+        print(" newEmails", "=",newEmails )
+        return newEmails.count
     }
 }
 let dd = Solution()
 dd.numUniqueEmails(["hur.jinsung@hotmail.com", "hurjin+sung@hotmail.com"])
 
 
-
-
-
-
-
-//let a = "ADSFA@SDFAS"
+//let a = "AD..SFA@SDFAS"
 //let b = (a.split(separator: "@"))[0]
 //let c = a.split { $0 == "@" }
 //print("c ", "=", c)
+//
+//let aa = a.replacingOccurrences(of: ".", with: "")
+//
+//print(aa)
 
+var email = Set<String>()
+email.insert("aa")
+email.insert("bb")
+email.insert("aa")
 
-
+print(email)
