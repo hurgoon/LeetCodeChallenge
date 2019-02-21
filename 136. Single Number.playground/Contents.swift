@@ -21,22 +21,29 @@ import UIKit
 
 class Solution {
     func singleNumber(_ nums: [Int]) -> Int {
-
         var answer = 0
         
         for num in nums {
             answer ^= num
         }
-        
         return answer
+    }
+    
+    func singleNumber2(_ nums: [Int]) -> Int {
+    
+        return nums.reduce(0, ^)
     }
 }
 
 let a = Solution()
 a.singleNumber([2,2,3,3,4])
+a.singleNumber2([2,2,3,3,4])
 
 Int("1010", radix: 2)
 String(2, radix: 2)
 
 0^2^2^3^3^4
 0^4
+
+let bb = [2,2,3,3,4]
+bb.reduce(0, ^)
