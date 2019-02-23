@@ -46,17 +46,14 @@ class Solution {
     func invertTree(_ root: TreeNode?) -> TreeNode? {
         
          if root != nil {
-            let tempLeft: TreeNode?
-            let tempRight: TreeNode?
-            
-            tempLeft = root?.left
-            tempRight = root?.right
-            
-            root?.right = tempLeft
-            root?.left = tempRight
+            let tempLeft: TreeNode? = root?.left
+            let tempRight: TreeNode? = root?.right
             
 //            tempLeft != nil ? (root?.right = tempLeft) : (root?.right = nil)
 //            tempRight != nil ? (root?.left = tempRight) : (root?.left = nil)
+            
+            root?.right = tempLeft
+            root?.left = tempRight
         }
         
         root?.left = invertTree(root?.left)
