@@ -28,46 +28,31 @@ public class ListNode {
 let sample = ListNode(1)
 sample.next = ListNode(2)
 sample.next!.next = ListNode(3)
-sample.next!.next!.next = ListNode(4)
+sample.next!.next!.next = ListNode(34)
 sample.next!.next!.next!.next = ListNode(5)
+
 
 class Solution {
     func reverseList(_ head: ListNode?) -> ListNode? {
-        var head = head
-    
-        if head == nil {
-            return nil
-        }
+        guard let head = head else { return nil }
+        guard let headNext = head.next else { return head }
         
-        let temp = head
+        let newHead = reverseList(headNext)
+        head.next = nil
+        headNext.next = head
         
-        let nextNode =  reverseList(head?.next)
+        print(newHead?.val)
+        print(newHead?.next?.val)
+        print(newHead?.next?.next?.val)
+        print(newHead?.next?.next?.next?.val)
+        print(newHead?.next?.next?.next?.next?.val)
+        print("===========")
         
-        nextNode != nil ? (head = nextNode, head?.next = temp, head?.next?.next = nil) : nil
-        
-        
-        
-        return head
-    }
-    
-    func reverseList2(_ head: ListNode?) -> ListNode? {
-            guard let head = head else { return nil }
-            guard let next = head.next else { return head }
-            
-            let headNew = reverseList(next)
-            next.next = head
-            head.next = nil
-        
-        print("head.val ", "=", head?.val)
-        print("head.next1.val ", "=", head?.next?.val)
-        print("head.next2.val ", "=", head?.next?.next?.val)
-        print("head.next3.val ", "=", head?.next?.next?.next?.val)
-        print("head.next4.val ", "=", head?.next?.next?.next?.next?.val)
-        
-            return headNew
+        return newHead
     }
 }
 
 let a = Solution()
-a.reverseList2(sample)
+a.reverseList(sample)
+
 
