@@ -24,30 +24,31 @@
 
 import UIKit
 
-class Solution {
+class Solution { // 48 ms    18.9 MB
     func maxProfit(_ prices: [Int]) -> Int {
         guard prices.first != nil else { return 0 }
         
         var min = prices[0]
-        var max = 0
-        var profits: Array<Int> = []
+        var maxProfit = 0
         
         for i in prices {
             
             i < min ? min = i : nil
+            print("i ", "=",i )
             print("min ", "=", min)
-            min < i && i > max ? max = i : nil
-            print(" max", "=", max)
+    
+            (i - min) > maxProfit ? maxProfit = (i - min) : nil
+            
+            print(" maxProfit", "=", maxProfit)
             print(" ========")
-            profits.append(max - min)
+            
         }
     
-        print("answer", "=", max == 0 ? 0 : max - min)
-        print("profits.max() ?? 0 ", "=", profits.max() ?? 0)
+        print("answer", "=", maxProfit)
         
-        return profits.max() ?? 0
+        return maxProfit
     }
 }
 
 let a = Solution()
-a.maxProfit([2,4,1])
+a.maxProfit([7,2,5,3,6,4,1,2,1,9])
